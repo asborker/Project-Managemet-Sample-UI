@@ -1,0 +1,23 @@
+<mat-drawer-container class="main-container">
+  <mat-drawer mode="side" opened="true" class="sidebar">
+    <div class="logo">
+      <h2>TRANSERVE</h2>
+    </div>
+    <div class="profile">
+      <div class="pic"></div>
+      <span>User</span>
+    </div>
+    <div class="menu">
+      <div class="item" *ngFor="let menu of menus; let i = index" [class.active]="menu.active">
+        <mat-icon class="menu-icon" matListIcon>alarm</mat-icon>
+        <span [routerLink]="[menu.value]">{{menu.title}}</span>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header></app-header>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,14 @@
+
+.app-header {
+    z-index: 9;
+    top: 0;
+    flex: 1 1 auto;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 5px 5px -5px #333;
+    -moz-box-shadow: 0 5px 5px -5px #333;
+    box-shadow: 0 5px 5px -5px #333;
+}
+
+.app-header span {
+    font-size: 1em;
+}
