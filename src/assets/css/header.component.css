@@ -12,3 +12,13 @@
 .app-header span {
     font-size: 1em;
 }
+
+.right {
+    position: absolute;
+    right: 20px;
+}
+
+.project-search {
+    margin-right: 20px;
+    font-size: 0.7em;
+}

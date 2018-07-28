@@ -9,7 +9,9 @@ import {
     MatIconModule,
     MatDividerModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule,
+    MatSelectModule
 } from '@angular/material';
 
 
@@ -23,7 +25,9 @@ const importExportArray = [
     MatDividerModule,
     MatTableModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTabsModule,
+    MatSelectModule
 ];
 
 @NgModule({

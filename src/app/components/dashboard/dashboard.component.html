@@ -1,3 +1,57 @@
-<p>
-  dashboard works!
-</p>
+<mat-toolbar class="app-header" role="heading">
+  <span>PROJECTS</span>
+  <div class="right">
+    <mat-form-field class="project-search">
+      <input matInput placeholder="Search project" [(ngModel)]="projectSearch">
+    </mat-form-field>
+    <button mat-stroked-button color="primary" [routerLink]="['../new-project']">CREATE NEW PROJECT</button>
+  </div>
+</mat-toolbar>
+<div class="scroll-container">
+  <div class="horizontalScroll">
+    <mat-card class="card" *ngFor="let project of projects | searchText:projectSearch:['projectName']; let m = index" (click)="getProjectDetails(project.projectId, m)">
+      <div class="selected" *ngIf="project.selected"></div>
+      <div class="card-header">
+        <span>{{project.projectName}}</span>
+        <mat-icon matListIcon class="card-more">more_vert</mat-icon>
+      </div>
+      <div class="card-content">
+        <div class="card-row">
+          <span>{{project.formsSubmitted}}</span>
+          <span>Number of Forms</span>
+        </div>
+        <div class="card-row">
+          <span>{{project.total}}</span>
+          <div class="row-sub">
+            <div class="badge" *ngFor="let user of project.users; let i = index">
+              <div *ngIf="i < 3" [ngStyle]="{'background': 'url(' + user.imageURL +') no-repeat 0 0', 'background-size':'cover', 'left': (i>=3?2:i + 1) * 20 + 'px'}"></div>
+            </div>
+            <div class="user-count" [ngStyle]="{'left': 3 * 30 - 10 + 'px'}">+{{project.total - 3}}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="details-section">
+  <div class="sec-head">
+    <h1>{{selectedProject.projectName}}</h1>
+    <p>Last Updated: {{selectedProject.lastUpdated | date}}</p>
+    <br/>
+    <p>Created On: {{selectedProject.createdOn | date}}</p>
+  </div>
+  <div class="sec-content">
+    <p>{{selectedProject.description}}</p>
+    <mat-divider></mat-divider>
+    <div>
+      <mat-tab-group dynamicHeight #tabGroup (selectedTabChange)="tabChanged($event)">
+        <mat-tab label="Forms">
+          <app-forms [projectId]="selectedProject.projectId" [reload]="reloadFormData"></app-forms>
+        </mat-tab>
+        <mat-tab label="Users">
+          <app-users [users]="selectedProject.users"></app-users>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,9 @@
 <mat-toolbar class="app-header" role="heading">
   <span>PROJECTS</span>
+  <div class="right">
+    <mat-form-field class="project-search">
+      <input matInput placeholder="Search project">
+    </mat-form-field>
+    <button mat-stroked-button color="primary" [routerLink]="['../new-project']">CREATE NEW PROJECT</button>
+  </div>
 </mat-toolbar>

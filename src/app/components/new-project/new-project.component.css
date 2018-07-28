@@ -1,0 +1,45 @@
+.app-header {
+    z-index: 9;
+    top: 0;
+    flex: 1 1 auto;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 5px 5px -5px #333;
+    -moz-box-shadow: 0 5px 5px -5px #333;
+    box-shadow: 0 5px 5px -5px #333;
+}
+
+.project-form {
+    position: relative;
+    display: block;
+    width: 70vw;
+    margin: 45px;
+    height: 100%;
+}
+
+.project-form mat-form-field {
+    width: 100%;
+    display: inline-block !important;
+}
+
+.project-form .full-width {
+    width: 100%;
+}
+
+.project-form .half-width {
+    width: 40%;
+    margin-top: 40px;
+}
+
+.project-form .half-width mat-form-field {
+    margin-bottom: 15px;
+}
+
+.project-form label {
+    font-weight: bold;
+    display: block;
+}
+
+.submit-btn {
+    background-color: #545559;
+    color: #ffffff;
+}

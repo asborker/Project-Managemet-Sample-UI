@@ -1,0 +1,20 @@
+
+.form-header {
+    width: 100%;
+    display: block;
+    padding: 10px;
+}
+
+.form-search {
+    position: relative;
+    left: 45%;
+}
+
+.form-select {
+    width: 280px;
+}
+
+.form-content {
+    width: 80vw;
+    display: block;
+}

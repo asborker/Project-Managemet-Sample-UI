@@ -1,0 +1,20 @@
+
+.users-header {
+    width: 100%;
+    display: block;
+    padding: 10px;
+}
+
+.users-search {
+    position: relative;
+    left: 55%;
+}
+
+.users-select {
+    width: 280px;
+}
+
+.users-content {
+    width: 80vw;
+    display: block;
+}

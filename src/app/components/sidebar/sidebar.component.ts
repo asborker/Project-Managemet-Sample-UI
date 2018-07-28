@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +17,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'Projects',
-      link: '',
+      link: 'projects',
       icon: 'folder',
       active: true
     },
@@ -35,14 +36,17 @@ export class SidebarComponent implements OnInit {
     {
       title: 'Map & Data View',
       link: '#',
-      icon: '',
+      icon: 'map',
       active: false
     }
 
   ]
+
+  activeMenu = {};
   constructor() { }
 
   ngOnInit() {
+    this.activeMenu = _.find(this.menus, { 'active': true });
   }
 
 }

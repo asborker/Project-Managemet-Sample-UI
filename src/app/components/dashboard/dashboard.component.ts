@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DashboardService } from '../../services/dashboard.service';
+import { Projects, Project } from '../../models/project.model';
+import { MatTabChangeEvent } from '@angular/material';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +11,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  private projects: Project[] = [];
+  private selectedProject = {};
+  private projectList: any = [];
+  reloadFormData: boolean = true;
+  @ViewChild('tabGroup') tabGroup;
+
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
+    // this. getProjectList();
+    this.getAllProjectData().then(projectData => {
+      this.projects = projectData['projects'];
+      this.selectedProject = this.projects[0];
+    }, err => {
+      alert(JSON.stringify(err));
+    })
+  }
+
+  getProjectDetails(projectId, index) {
+    _.forEach(this.projects, function (value, key) {
+      if (key == index) {
+        value.selected = true;
+      } else {
+        value.selected = false;
+      }
+    })
+    this.dashboardService.getProjectById(projectId).subscribe(res => {
+      if (res.result && res.result.length > 0) {
+        this.selectedProject = this.projects[_.findIndex(this.projects, ['projectId', res.result[0].projectId])];
+      }
+    }, err => {
+      alert(JSON.stringify(err));
+    })
+  }
+
+  getAllProjectData() {
+    return new Promise((resolve, reject) => {
+      let projectsData = {};
+      this.dashboardService.getAllProjectData().subscribe(res => {
+        if (res && res.result) {
+          projectsData = new Projects(res.result);
+          resolve(projectsData);
+        }
+      }, err => {
+        reject(err);
+      })
+    })
+  }
+
+  tabChanged = (tabChangeEvent: MatTabChangeEvent): void => {
+    if(tabChangeEvent.index == 0) {
+      this.reloadFormData = true;
+    } else {
+      this.reloadFormData = false;
+    }
   }
 
 }

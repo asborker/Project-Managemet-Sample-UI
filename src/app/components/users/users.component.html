@@ -1,0 +1,24 @@
+<div class="users-header">
+  <button mat-stroked-button color="primary">Add User</button>
+  <mat-form-field class="users-search">
+    <input matInput placeholder="Search" [(ngModel)]="userSearch">
+  </mat-form-field>
+</div>
+<div class="users-content">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | searchText:userSearch:['firstName','lastName']">
+        <td></td>
+        <td>{{user.firstName}} {{user.lastName}}</td>
+        <td>{{user.age}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

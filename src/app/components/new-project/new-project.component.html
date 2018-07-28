@@ -1,0 +1,44 @@
+<mat-toolbar class="app-header" role="heading">
+  <span>CREATE NEW PROJECTS</span>
+</mat-toolbar>
+<div>
+  <form #newProject [formGroup]="projectForm" class="project-form" (ngSubmit)="createProject()">
+    <div class="full-width">
+      <mat-form-field>
+        <input matInput placeholder="Project name" formControlName="projectName">
+        <mat-error >
+          Project name is
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Description (2000 characters)" maxlength="2000" formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="half-width">
+      <label>Select Form(s)</label>
+      <mat-form-field>
+        <mat-select placeholder="Choose one or multiple form(s)" formControlName="forms" multiple>
+          <mat-option *ngFor="let form of forms" [value]="form">{{form.formName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+      <label>Assign User(s)</label>
+      <mat-form-field>
+        <mat-select placeholder="Choose one or multiple user(s)" formControlName="usersControl" multiple>
+          <mat-option *ngFor="let user of users" [value]="user">{{user.firstName}} {{user.lastName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <label>Symbol</label>
+      <mat-form-field>
+        <mat-select [(value)]="selected" formControlName="symbol" placeholder="Select symbol">
+          <mat-option *ngFor="let symbol of symbols; let i = index" [value]="symbol.value">{{symbol.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-footer">
+      <button mat-stroked-button color="primary" [routerLink]="['../projects']">Cancel</button>
+      <button mat-raised-button type="submit" class="submit-btn" [disabled]="projectForm.invalid">Create Project</button>
+    </div>
+  </form>
+</div>
