@@ -21,12 +21,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     // this. getProjectList();
-    this.getAllProjectData().then(projectData => {
-      this.projects = projectData['projects'];
-      this.selectedProject = this.projects[0];
-    }, err => {
-      alert(JSON.stringify(err));
-    })
+    this.getAllProjectData();
   }
 
   getProjectDetails(projectId, index) {
@@ -47,21 +42,18 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllProjectData() {
-    return new Promise((resolve, reject) => {
-      let projectsData = {};
-      this.dashboardService.getAllProjectData().subscribe(res => {
-        if (res && res.result) {
-          projectsData = new Projects(res.result);
-          resolve(projectsData);
-        }
-      }, err => {
-        reject(err);
-      })
+    this.dashboardService.getAllProjectData().subscribe(res => {
+      if (res && res.result) {
+        this.projects = new Projects(res.result).projects;
+        this.selectedProject = this.projects[0];
+      }
+    }, err => {
+      alert(JSON.stringify(err));
     })
   }
 
   tabChanged = (tabChangeEvent: MatTabChangeEvent): void => {
-    if(tabChangeEvent.index == 0) {
+    if (tabChangeEvent.index == 0) {
       this.reloadFormData = true;
     } else {
       this.reloadFormData = false;

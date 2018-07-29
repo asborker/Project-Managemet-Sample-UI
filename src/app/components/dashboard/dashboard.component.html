@@ -1,6 +1,10 @@
 <mat-toolbar class="app-header" role="heading">
   <span>PROJECTS</span>
   <div class="right">
+    <div class="refresh-link" (click)="getAllProjectData()">
+      <mat-icon matListIcon>refresh</mat-icon>
+      <span>Refresh</span>
+    </div>
     <mat-form-field class="project-search">
       <input matInput placeholder="Search project" [(ngModel)]="projectSearch">
     </mat-form-field>
@@ -9,13 +13,13 @@
 </mat-toolbar>
 <div class="scroll-container">
   <div class="horizontalScroll">
-    <mat-card class="card" *ngFor="let project of projects | searchText:projectSearch:['projectName']; let m = index" (click)="getProjectDetails(project.projectId, m)">
+    <mat-card class="card" *ngFor="let project of projects | searchText:projectSearch:['projectName']; let m = index">
       <div class="selected" *ngIf="project.selected"></div>
       <div class="card-header">
-        <span>{{project.projectName}}</span>
+        <span (click)="getProjectDetails(project.projectId, m)">{{project.projectName}}</span>
         <mat-icon matListIcon class="card-more">more_vert</mat-icon>
       </div>
-      <div class="card-content">
+      <div class="card-content" (click)="getProjectDetails(project.projectId, m)">
         <div class="card-row">
           <span>{{project.formsSubmitted}}</span>
           <span>Number of Forms</span>

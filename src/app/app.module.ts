@@ -11,7 +11,6 @@ import { MaterialModule } from './material.module';
 // Components
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './components/container/container.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsComponent } from './components/forms/forms.component';
@@ -31,7 +30,6 @@ import { SearchTextPipe } from './pipes/search-text.pipe';
     AppComponent,
     ContainerComponent,
     DashboardComponent,
-    HeaderComponent,
     SidebarComponent,
     FormsComponent,
     UsersComponent,

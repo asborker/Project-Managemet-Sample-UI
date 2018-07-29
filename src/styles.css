@@ -431,6 +431,7 @@ body {
 /**** Header style ****/
 
 .app-header {
+    width: 100vw !important;
     z-index: 9;
     top: 0;
     flex: 1 1 auto;
@@ -452,6 +453,19 @@ body {
 .project-search {
     margin-right: 20px;
     font-size: 0.7em;
+}
+
+.refresh-link {
+    font-size: 0.8em;
+    display: inline-block;
+    margin-right: 25px;
+    cursor: pointer;
+    color: #333;
+}
+
+.refresh-link mat-icon {
+    display: inline;
+    font-size: 1em;
 }
 
 /*********************/
@@ -546,10 +560,6 @@ body {
 
 .menu .active {
     background-color: #4F83B2;
-}
-
-.app-header {
-    width: 100vw !important;
 }
 /* 
 ::-webkit-scrollbar{width:2px;height:2px;}
